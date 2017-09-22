@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cdc.armada.themis.mapper.LoginMapper">
+
+    <!-- 
+    <select id="selectRoleId" parameterType="User" resultType="String">
+        select a.role_id from t_role a right join (select user_id from t_user where
+         user_name=#{userName} and password=#{password}) as b on (a.user_id=b.user_id)
+    </select>
+    -->
+    
+    <select id="selectUserName" parameterType="cdc.armada.themis.entity.UserEntity" resultType="String">
+        SELECT USERNAME FROM t1099_user WHERE USERID = #{userId} and PASSWORD = #{password} and LOCKFLAG != '1'
+    </select>
+ 
+</mapper>
