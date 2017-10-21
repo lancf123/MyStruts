@@ -10,7 +10,9 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
@@ -24,9 +26,15 @@ import org.springframework.transaction.PlatformTransactionManager;
 @MapperScan("cdc.armada.themis.mapper")
 @PropertySource("classpath:message_cn.properties")
 @PropertySource("classpath:system.properties")
-public class Application {
+public class Application extends SpringBootServletInitializer{
 
 	private static Logger logger = LogManager.getLogger(Application.class);
+	
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
+    }
 
 	@Bean
 	@ConfigurationProperties(prefix = "spring.datasource")
